@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SGM.ApplicationServices\SGM.ApplicationServices.csproj" />
+    <ProjectReference Include="..\SGM.Infrastructure\SGM.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
