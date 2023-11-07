@@ -14,7 +14,8 @@ namespace SGM.Infrastructure.Context
             _connectionKeys = keys;
         }
 
-        public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Cliente> Cliente { get; set; }
+        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
