@@ -9,16 +9,15 @@ namespace SGM.ApplicationServices.Services
         private readonly IClienteRepository _clienteRepository;
         private readonly IMapper _mapper;
 
-        public ClienteServices(IClienteRepository clienteRepository,IMapper mapper)
+        public ClienteServices(IClienteRepository clienteRepository, IMapper mapper)
         {
             _clienteRepository = clienteRepository;
             _mapper = mapper;
         }
 
-        public IEnumerable<CLienteViewModel> GetByAll()
+        public IEnumerable<ClienteViewModel> GetByAll()
         {
             return _mapper.Map<IEnumerable<ClienteViewModel>>(_clienteRepository.GetByAll());
         }
-
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace SGM.ApplicationServices.ViewModels
 {
-    public class CLienteViewModel
+    public class ClienteViewModel
     {
         public int ClienteId { get; set; }
         public string NomeCliente { get; set; }

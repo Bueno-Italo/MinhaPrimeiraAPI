@@ -8,7 +8,7 @@ namespace SGM.ApplicationServices.AutoMapper
     {
         public DomainViewModel()
         {
-            CreateMap<Cliente, CLienteViewModel>();
+            CreateMap<Cliente, ClienteViewModel>();
         }
     }
 }
