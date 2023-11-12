@@ -37,5 +37,25 @@ namespace SGM.WebApi.Controllers
                 return StatusCode(500, ex);
             }
         }
+
+        [HttpGet]
+        [Route("cliente/{clienteId}")]
+        public IActionResult GetClienteById(int clienteId) 
+        {
+            try
+            {
+                _logger.Information($"[ClienteController.GetClientesById] - Solicitando a busca do cliente com Id: {clienteId}");
+
+                var cliente = _clienteServices.GetById(clienteId);
+
+                return Ok(cliente);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, $"[ClienteController.GetClientesById] - Erro ao efetuar a busca do cliente com o Id: {clienteId} Erro: {ex.Message}");
+
+                return StatusCode(500, ex);
+            }
+        }
     }
 }

@@ -1,13 +1,8 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
+﻿using Microsoft.OpenApi.Models;
 using Serilog;
 using SGM.ApplicationServices.AutoMapper;
 using SGM.CrossCutting;
 using SGM.Domain.ValueObjects;
-using System;
 
 namespace SGM.WebApi
 {
@@ -29,7 +24,7 @@ namespace SGM.WebApi
             services.AddSingleton(AutoMapperConfiguration.RegisterMappings().CreateMapper());
             var filePath = Configuration.GetSection("Log:Path") is null ? DEFAULT_LOG_DIRECTORY : Configuration.GetSection("Log:Path").Value;
 
-            services.AddSingleton<ILogger, Serilog.Core.Logger>(x =>
+            services.AddSingleton<Serilog.ILogger, Serilog.Core.Logger>(x =>
             {
                 var logger = new LoggerConfiguration()
                 .WriteTo.File(filePath, rollingInterval: RollingInterval.Day)
@@ -49,20 +44,20 @@ namespace SGM.WebApi
             {
                 x.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Version = "7.6",
-                    Title = "Exposição do banco de dados das aplicações do SGM",
-                    Description = "Nesta versão temos logs na forma de mao de obra controller - gabriel araújo",
-                    TermsOfService = new Uri("http://arielgiacomini.com.br"),
+                    Version = "1.0",
+                    Title = "Exposição do banco de dados",
+                    Description = "Construindo minha primeira API no Design Pattern DDD com SQLServer",
+                    TermsOfService = new Uri("http://example.com/"),
                     Contact = new OpenApiContact
                     {
-                        Name = "Ariel Giacomini da Silva",
-                        Email = "arieltecnologia@outlook.com",
-                        Url = new Uri("http://arielgiacomini.com.br")
+                        Name = "Italo da Cruz Bueno",
+                        Email = "italo-bueno@hotmail.com",
+                        Url = new Uri("http://example.com/")
                     },
                     License = new OpenApiLicense
                     {
                         Name = "Não há licença",
-                        Url = new Uri("http://arielgiacomini.com.br")
+                        Url = new Uri("http://example.com/")
                     }
                 });
             });
@@ -72,7 +67,7 @@ namespace SGM.WebApi
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         [Obsolete]
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
