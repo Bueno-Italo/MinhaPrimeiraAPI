@@ -17,7 +17,16 @@ namespace SGM.ApplicationServices.Services
 
         public IEnumerable<ClienteViewModel> GetByAll()
         {
-            return _mapper.Map<IEnumerable<ClienteViewModel>>(_clienteRepository.GetByAll());
+            return _mapper
+                .Map<IEnumerable<ClienteViewModel>>(_clienteRepository
+                .GetByAll());
+        }
+
+        public ClienteViewModel GetById(int clienteId)
+        {
+            return _mapper
+                .Map<ClienteViewModel>(_clienteRepository
+                .GetById(clienteId));
         }
     }
 }

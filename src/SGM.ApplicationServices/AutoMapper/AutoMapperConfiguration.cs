@@ -4,7 +4,7 @@ namespace SGM.ApplicationServices.AutoMapper
 {
     public class AutoMapperConfiguration
     {
-        public static MapperConfiguration RegisterMAppings()
+        public static MapperConfiguration RegisterMappings()
         {
             return new MapperConfiguration(x =>
             {

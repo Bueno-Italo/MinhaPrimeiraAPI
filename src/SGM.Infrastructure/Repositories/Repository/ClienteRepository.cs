@@ -21,6 +21,12 @@ namespace SGM.Infrastructure.Repositories.Repository
                 .ToList();
         }
 
+        public Cliente? GetById(int clienteId)
+        {
+            return _SGMContext.Cliente
+                .AsNoTracking()
+                .Where(x => x.ClienteId == clienteId)
+                .FirstOrDefault();
+        }
     }
-
 }

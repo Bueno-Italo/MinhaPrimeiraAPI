@@ -5,5 +5,6 @@ namespace SGM.Infrastructure.Repositories.Interfaces
     public interface IClienteRepository
     {
         IEnumerable<Cliente> GetByAll();
+        Cliente? GetById(int clienteId);
     }
 }
