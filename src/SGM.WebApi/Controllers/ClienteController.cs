@@ -77,5 +77,27 @@ namespace SGM.WebApi.Controllers
                 return StatusCode(500, ex);
             }
         }
+
+        [HttpPut]
+        [Route("cliente/inativar/{clienteId}")]
+
+        public IActionResult InativarCliente(int clienteId) 
+        {
+            try
+            {
+                _logger.Information($"[ClienteController.InativarCliente] - Solicitação para inativar um cliente a partir do seu Id: {clienteId}");
+
+                _clienteServices.InativarCliente(clienteId);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, $"[ClienteController.InativarCliente] - Erro ao efetuar a inativação do cliente a partir do seu Id: {clienteId} Erro: {ex.Message}");
+
+                return StatusCode(500, ex);
+                
+            }
+        }
     }
 }

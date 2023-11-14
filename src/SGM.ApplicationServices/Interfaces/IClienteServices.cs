@@ -7,5 +7,6 @@ namespace SGM.ApplicationServices.Interfaces
         IEnumerable<ClienteViewModel> GetByAll();
         ClienteViewModel GetById(int clienteId);
         ClienteViewModel GetClienteByDocumentoCliente(string documentoCliente);
+        void InativarCliente(int solicitacaoId);
     }
 }
