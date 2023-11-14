@@ -15,7 +15,7 @@ namespace SGM.Infrastructure.Context
         }
 
         public DbSet<Cliente> Cliente { get; set; }
-        
+        public IEnumerable<object> ClienteVeiculo { get; internal set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

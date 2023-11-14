@@ -6,5 +6,6 @@ namespace SGM.Infrastructure.Repositories.Interfaces
     {
         IEnumerable<Cliente> GetByAll();
         Cliente? GetById(int clienteId);
+        Cliente GetClienteByDocumentoCliente(string documentoCliente);
     }
 }

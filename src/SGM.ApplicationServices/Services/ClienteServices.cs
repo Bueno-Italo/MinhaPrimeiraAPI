@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using SGM.ApplicationServices.Interfaces;
 using SGM.ApplicationServices.ViewModels;
 using SGM.Infrastructure.Repositories.Interfaces;
 
@@ -27,6 +28,11 @@ namespace SGM.ApplicationServices.Services
             return _mapper
                 .Map<ClienteViewModel>(_clienteRepository
                 .GetById(clienteId));
+        }
+
+        public ClienteViewModel GetClienteByDocumentoCliente(string documentoCliente)
+        {
+            return _mapper.Map<ClienteViewModel>(_clienteRepository.GetClienteByDocumentoCliente(documentoCliente));
         }
     }
 }

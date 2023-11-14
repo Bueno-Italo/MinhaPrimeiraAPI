@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SGM.ApplicationServices.Services;
+using SGM.ApplicationServices.Interfaces;
 
 namespace SGM.WebApi.Controllers
 {
@@ -40,7 +40,7 @@ namespace SGM.WebApi.Controllers
 
         [HttpGet]
         [Route("cliente/{clienteId}")]
-        public IActionResult GetClienteById(int clienteId) 
+        public IActionResult GetClienteById(int clienteId)
         {
             try
             {
@@ -53,6 +53,26 @@ namespace SGM.WebApi.Controllers
             catch (Exception ex)
             {
                 _logger.Error(ex, $"[ClienteController.GetClientesById] - Erro ao efetuar a busca do cliente com o Id: {clienteId} Erro: {ex.Message}");
+
+                return StatusCode(500, ex);
+            }
+        }
+
+        [HttpGet]
+        [Route("cliente/documento-cliente")]
+        public IActionResult GetClienteByDocumentoCliente(string documentoCliente)
+        {
+            try
+            {
+                _logger.Information($"[ClienteController.GetClienteByDocumentoCliente] - Solicitação para buscar um cliente a partir do seu documento: {documentoCliente}");
+
+                var cliente = _clienteServices.GetClienteByDocumentoCliente(documentoCliente);
+
+                return Ok(cliente);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, $"[ClienteController.GetClienteByDocumentoCliente] - Erro ao efetuar a busca do cliente a partir do seu documento: {documentoCliente} Erro: {ex.Message}");
 
                 return StatusCode(500, ex);
             }
