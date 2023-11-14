@@ -28,5 +28,11 @@ namespace SGM.Infrastructure.Repositories.Repository
                 .Where(x => x.ClienteId == clienteId)
                 .FirstOrDefault();
         }
+
+        public Cliente GetClienteByDocumentoCliente(string documentoCliente)
+        {
+            return _SGMContext.Cliente.AsNoTracking().Where(cliente => cliente.DocumentoCliente.Replace(".", "").Replace("-", "") == documentoCliente.Replace(".", "").Replace("-", "") && cliente.ClienteAtivo).FirstOrDefault();
+        }
+        
     }
 }
