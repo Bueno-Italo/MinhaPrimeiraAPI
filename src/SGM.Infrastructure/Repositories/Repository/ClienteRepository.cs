@@ -17,7 +17,6 @@ namespace SGM.Infrastructure.Repositories.Repository
         {
             return _SGMContext.Cliente
                 .AsNoTracking()
-                .Where(cliente => cliente.ClienteAtivo)
                 .ToList();
         }
 
@@ -33,6 +32,16 @@ namespace SGM.Infrastructure.Repositories.Repository
         {
             return _SGMContext.Cliente.AsNoTracking().Where(cliente => cliente.DocumentoCliente.Replace(".", "").Replace("-", "") == documentoCliente.Replace(".", "").Replace("-", "") && cliente.ClienteAtivo).FirstOrDefault();
         }
-        
+
+        public void InativarCliente(int clienteId)
+        {
+            var cliente = GetById(clienteId);
+
+            cliente.DataAlteracao = DateTime.Now;
+            cliente.ClienteAtivo = false;
+
+            _SGMContext.Update(cliente);
+            _SGMContext.SaveChanges();
+        }
     }
 }

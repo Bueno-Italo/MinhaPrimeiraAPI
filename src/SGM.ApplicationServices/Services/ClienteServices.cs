@@ -34,5 +34,10 @@ namespace SGM.ApplicationServices.Services
         {
             return _mapper.Map<ClienteViewModel>(_clienteRepository.GetClienteByDocumentoCliente(documentoCliente));
         }
+
+        public void InativarCliente(int solicitacaoId)
+        {
+            _clienteRepository.InativarCliente(solicitacaoId);
+        }
     }
 }
