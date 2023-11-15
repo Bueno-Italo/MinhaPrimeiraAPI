@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SGM.ApplicationServices.Interfaces;
+using SGM.ApplicationServices.ViewModels;
+using System.Text.Json;
 
 namespace SGM.WebApi.Controllers
 {
@@ -97,6 +99,27 @@ namespace SGM.WebApi.Controllers
 
                 return StatusCode(500, ex);
                 
+            }
+        }
+
+        [HttpPost]
+        [Route("cliente")]
+
+        public IActionResult Salvar(ClienteViewModel model)
+        {
+            try
+            {
+                _logger.Information($"[ClienteController.Salvar] - Solicitação para salvar o cliente: {JsonSerializer.Serialize(model)}");
+
+                var clienteId = _clienteServices.Salvar(model);
+
+                return Created("", clienteId);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, $"[ClienteController.Salvar] - Erro ao  tentar Salvar o Cliente: {JsonSerializer.Serialize(model)} Erro: {ex.Message}");
+
+                return StatusCode(500, ex);
             }
         }
     }

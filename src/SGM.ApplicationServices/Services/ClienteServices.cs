@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SGM.ApplicationServices.Interfaces;
 using SGM.ApplicationServices.ViewModels;
+using SGM.Domain.Entities;
 using SGM.Infrastructure.Repositories.Interfaces;
 
 namespace SGM.ApplicationServices.Services
@@ -38,6 +39,13 @@ namespace SGM.ApplicationServices.Services
         public void InativarCliente(int solicitacaoId)
         {
             _clienteRepository.InativarCliente(solicitacaoId);
+        }
+
+        public int Salvar(ClienteViewModel model)
+        {
+            var entidade = _mapper.Map<Cliente>(model);
+            entidade.DataAlteracao = null;
+            return _clienteRepository.Salvar(entidade);
         }
     }
 }

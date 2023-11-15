@@ -8,5 +8,6 @@ namespace SGM.ApplicationServices.Interfaces
         ClienteViewModel GetById(int clienteId);
         ClienteViewModel GetClienteByDocumentoCliente(string documentoCliente);
         void InativarCliente(int solicitacaoId);
+        int Salvar(ClienteViewModel model);
     }
 }
