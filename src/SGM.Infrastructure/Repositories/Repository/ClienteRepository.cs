@@ -54,5 +54,13 @@ namespace SGM.Infrastructure.Repositories.Repository
 
             return entidade.ClienteId;
         }
+
+        public void Atualizar(Cliente cliente)
+        {
+            cliente.DataAlteracao = DateTime.Now;
+
+            _SGMContext.Cliente.Update(cliente);
+            _SGMContext.SaveChanges();
+        }
     }
 }

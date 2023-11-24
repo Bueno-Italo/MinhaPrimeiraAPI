@@ -4,6 +4,7 @@ namespace SGM.Infrastructure.Repositories.Interfaces
 {
     public interface IClienteRepository
     {
+        void Atualizar(Cliente cliente);
         IEnumerable<Cliente> GetByAll();
         Cliente? GetById(int clienteId);
         Cliente GetClienteByDocumentoCliente(string documentoCliente);
