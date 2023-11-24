@@ -4,6 +4,7 @@ namespace SGM.ApplicationServices.Interfaces
 {
     public interface IClienteServices
     {
+        void Atualizar(ClienteViewModel model);
         IEnumerable<ClienteViewModel> GetByAll();
         ClienteViewModel GetById(int clienteId);
         ClienteViewModel GetClienteByDocumentoCliente(string documentoCliente);

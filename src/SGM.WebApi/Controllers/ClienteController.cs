@@ -122,5 +122,26 @@ namespace SGM.WebApi.Controllers
                 return StatusCode(500, ex);
             }
         }
+
+        [HttpPut]
+        [Route("cliente/{clienteId}")]
+        public IActionResult Atualizar(int clienteId, ClienteViewModel model)
+        {
+            try
+            {
+                _logger.Information($"[ClienteController.Atualizar] - Solicitação para Atualizar o Cliente de Id: {clienteId} com as seguintes informações: {JsonSerializer.Serialize(model)}");
+
+                model.ClienteId = clienteId;
+                _clienteServices.Atualizar(model);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, $"[ClienteController.Atualizar] - Erro ao  tentar Atualizar o Cliente: {JsonSerializer.Serialize(model)} Erro: {ex.Message}");
+
+                return StatusCode(500, ex);
+            }
+        }
     }
 }
