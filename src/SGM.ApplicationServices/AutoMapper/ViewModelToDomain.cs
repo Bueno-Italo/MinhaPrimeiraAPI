@@ -9,6 +9,8 @@ namespace SGM.ApplicationServices.AutoMapper
         public ViewModelToDomain()
         {
             CreateMap<ClienteViewModel, Cliente>();
+            CreateMap<VeiculoViewModel, Veiculo>();
+            CreateMap<VeiculoMarcaViewModel, VeiculoMarca>();
         }
     }
 }
